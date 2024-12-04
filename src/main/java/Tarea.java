@@ -1,20 +1,36 @@
-public final class Tarea { // Clase marcada como final porque no está diseñada para herencia.
+public class Tarea {
 
   private String titulo;
 
-  public void setTitulo(final String titulo) { // Parámetro final para evitar modificaciones accidentales.
-    if (titulo == null || titulo.isEmpty()) { // Validación para evitar valores nulos o vacíos.
-      throw new IllegalArgumentException("El título no puede ser nulo o vacío.");
+  /**
+   * Establece el título.
+   * 
+   * @param nuevoTitulo El título a asignar.
+   * @throws NullPointerException si el título es nulo.
+   */
+  public void setTitulo(String nuevoTitulo) {
+    if (nuevoTitulo == null) {
+      throw new NullPointerException(
+          "El título no puede ser nulo");
     }
-    this.titulo = titulo;
+    this.titulo = nuevoTitulo;
   }
 
+  /**
+   * Obtiene el título.
+   * 
+   * @return El título actual.
+   */
   public String getTitulo() {
     return this.titulo;
   }
 
-  @Deprecated // Indicar que el método no se debe usar.
+  /**
+   * Método innecesario que solo imprime un mensaje.
+   */
   public void metodoInutil() {
     System.out.println("Este método no hace nada relevante.");
   }
+
 }
+
