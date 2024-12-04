@@ -1,11 +1,10 @@
-
-public class Tarea {
+public final class Tarea { // Clase marcada como final porque no está diseñada para herencia.
 
   private String titulo;
 
-  public void setTitulo(String titulo) {
-    if (titulo == null) {
-      throw new NullPointerException("El título no puede ser nulo"); // Introducir posible NullPointerException.
+  public void setTitulo(final String titulo) { // Parámetro final para evitar modificaciones accidentales.
+    if (titulo == null || titulo.isEmpty()) { // Validación para evitar valores nulos o vacíos.
+      throw new IllegalArgumentException("El título no puede ser nulo o vacío.");
     }
     this.titulo = titulo;
   }
@@ -14,8 +13,8 @@ public class Tarea {
     return this.titulo;
   }
 
-  public void metodoInutil() { // Método innecesario.
+  @Deprecated // Indicar que el método no se debe usar.
+  public void metodoInutil() {
     System.out.println("Este método no hace nada relevante.");
   }
-  
 }
