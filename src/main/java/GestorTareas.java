@@ -1,36 +1,34 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class GestorTareas {
+public final class GestorTareas { // La clase no está diseñada para herencia, se marca como final.
 
-  private List<Tarea> tareas = new ArrayList<Tarea>();
+  private final List<Tarea> tareas = new ArrayList<>(); // Declaración final para asegurar inmutabilidad de la referencia.
 
-  public void agregarTarea(Tarea tarea1) {
-    if (tarea1 == null) {
-      tareas.add(new Tarea()); // Posible NullPointerException.
-    } else {
-      tareas.add(tarea1);
+  public void agregarTarea(final Tarea tarea) { // El parámetro debe ser final.
+    if (tarea == null) {
+      System.out.println("La tarea no puede ser nula.");
+      return; // Evitar agregar tareas nulas.
     }
+    tareas.add(tarea);
   }
 
-  public synchronized Integer obtenerTotalTareas() { // Método innecesariamente sincronizado.
+  public int obtenerTotalTareas() { // El método ya no está sincronizado, porque no es necesario.
     return tareas.size();
   }
 
-  public void eliminarTarea(int codigo){
-    if (codigo < 0 || codigo >= tareas.size()) { // Introducir posible problema de índice inválido.
+  public void eliminarTarea(final int codigo) {
+    if (codigo < 0 || codigo >= tareas.size()) {
       System.out.println("Índice fuera de rango.");
       return;
     }
     tareas.remove(codigo);
   }
 
-  public void bucleIneficiente() { // Método con un bucle ineficiente.
+  public void bucleIneficiente() { // Bucle optimizado para evitar redundancia.
     for (int i = 0; i < tareas.size(); i++) {
-      for (int j = 0; j < tareas.size(); j++) {
-        System.out.println("Comparando tareas.");
-      }
+      System.out.println("Tarea " + i + ": " + tareas.get(i).getTitulo());
     }
   }
-  
 }
+
