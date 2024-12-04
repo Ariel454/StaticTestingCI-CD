@@ -1,9 +1,9 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public final class GestorTareas { // La clase no está diseñada para herencia, se marca como final.
+public final class GestorTareas {
 
-  private final List<Tarea> tareas = new ArrayList<>(); // Declaración final para asegurar inmutabilidad de la referencia.
+  private final List<Tarea> tareas = new ArrayList<>();
 
   public void agregarTarea(final Tarea tarea) { // El parámetro debe ser final.
     if (tarea == null) {
@@ -13,7 +13,7 @@ public final class GestorTareas { // La clase no está diseñada para herencia, 
     tareas.add(tarea);
   }
 
-  public int obtenerTotalTareas() { // El método ya no está sincronizado, porque no es necesario.
+  public int obtenerTotalTareas() {
     return tareas.size();
   }
 
@@ -31,4 +31,3 @@ public final class GestorTareas { // La clase no está diseñada para herencia, 
     }
   }
 }
-
